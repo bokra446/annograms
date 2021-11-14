@@ -112,8 +112,8 @@ void writeAnnogram(std::vector<std::pair<std::string, int>>& dict, std::string l
 int main(int argc, char* argv[]) {
     //const char* const dictionary = "dictionary.txt";
     //std::ifstream input(dictionary);
-    std::ifstream input("input.txt");
-    //std::ifstream input(argv[1]);
+    //std::ifstream input("input.txt");
+    std::ifstream input(argv[1]);
     try {
         input.is_open();
     }
@@ -122,13 +122,12 @@ int main(int argc, char* argv[]) {
         std::cerr << e.what() << std::endl; 
     }
 
-    //readDict(argv[2]);
-    std::vector<std::pair<std::string, int>> dict = readDict("dictionary.txt");
+    std::vector<std::pair<std::string, int>> dict = readDict(argv[2]);
+    //std::vector<std::pair<std::string, int>> dict = readDict("dictionary.txt");
     std::string line;
     while(getline(input, line)){
         writeAnnogram(dict, line);
     }
     input.close();
-   std::cout << "wse" << std::endl;
     return 0;
 }
