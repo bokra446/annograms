@@ -89,6 +89,9 @@ void writeAnnogram(std::vector<std::pair<std::string, int>>& dict, std::string l
     std::vector<std::vector<std::string>> words;
     std::istringstream row(line);
     //считаем количество слов
+    if(line.empty()){
+        return;
+    }
     size_t count = countWords(line);
     words.resize(count + 1);
     std::string word;
@@ -103,6 +106,12 @@ void writeAnnogram(std::vector<std::pair<std::string, int>>& dict, std::string l
             if ((std::is_permutation(word.begin(), word.end(), j->first.begin())) && (word.size() == j->first.size())){
                 words.at(i).push_back(j->first);
             }
+        }
+    }
+    for(size_t i = 0; i < count; ++i){
+        if (words[i].size() == 0){
+            std::cout << line << ": Not Annogram" << std::endl;
+            return;
         }
     }
     //нужно пересостыковать слова в предложении
